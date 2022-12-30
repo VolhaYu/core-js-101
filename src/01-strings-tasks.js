@@ -5,7 +5,6 @@
  *                                                                                           *
  ******************************************************************************************* */
 
-
 /**
  * Returns the result of concatenation of two strings.
  *
@@ -21,7 +20,6 @@
 function concatenateStrings(value1, value2) {
   return value1 + value2;
 }
-
 
 /**
  * Returns the length of given string.
@@ -70,7 +68,6 @@ function extractNameFromTemplate(value) {
   arr = arr[0].split(' ');
   return arr.slice(1).join(' ');
 }
-
 
 /**
  * Returns a first char of the given string.
@@ -147,7 +144,6 @@ function unbracketTag(str) {
   return str.slice(1, -1);
 }
 
-
 /**
  * Converts all characters of the specified string into the upper case
  *
@@ -208,19 +204,8 @@ function getRectangleString(width, height) {
   const w = '─'.repeat(width - 2);
   const sp = ' '.repeat(width - 2);
   const h = ''.concat('│', sp, '│', '\n');
-  return ''.concat(
-    '┌',
-    w,
-    '┐',
-    '\n',
-    h.repeat(height - 2),
-    '└',
-    w,
-    '┘',
-    '\n',
-  );
+  return ''.concat('┌', w, '┐', '\n', h.repeat(height - 2), '└', w, '┘', '\n');
 }
-
 
 /**
  * Encode specified string with ROT13 cipher
@@ -238,8 +223,19 @@ function getRectangleString(width, height) {
  *    => 'NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm'
  *
  */
-function encodeToRot13(/* str */) {
-  throw new Error('Not implemented');
+function encodeToRot13(str) {
+  // throw new Error('Not implemented');
+  const input = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+  const output = 'NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm';
+  const res = [];
+  str.split('').forEach((char) => {
+    if (input.indexOf(char) === -1) {
+      res.push(char);
+    } else {
+      res.push(output[input.indexOf(char)]);
+    }
+  });
+  return res.join('');
 }
 
 /**
@@ -258,7 +254,6 @@ function encodeToRot13(/* str */) {
 function isString(value) {
   return typeof value === 'string' || value instanceof String;
 }
-
 
 /**
  * Returns playid card id.
@@ -341,7 +336,6 @@ function getCardId(value) {
   ];
   return deck.indexOf(value);
 }
-
 
 module.exports = {
   concatenateStrings,
